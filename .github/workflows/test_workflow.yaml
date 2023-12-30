@@ -1,0 +1,28 @@
+
+
+on:
+  push:
+
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Build matrix
+        id: build_matrix
+        uses: jannekem/run-python-script-action@v1
+        with:
+          script: |
+            for i in range(100):
+                print(i)
